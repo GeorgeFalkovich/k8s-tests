@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: show-host-details
-          image: us-central1-docker.pkg.dev/georgef-sandbox/show-host-details-cicd-k8s/show-host-details
+          image: us-central1-docker.pkg.dev/georgef-sandbox/show-host-details/show-host-details
           ports:
             - containerPort: 80
 
