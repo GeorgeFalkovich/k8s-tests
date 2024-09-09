@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: show-hostname-details
+  name: show-hostname-details
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: show-hostname-details
+  template:
+    metadata:
+      labels:
+        app: show-hostname-details
+    spec:
+      # Pod anti affinity config START
+      # affinity:
+      #   podAntiAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #     - labelSelector:
+      #         matchExpressions:
+      #         - key: app
+      #           operator: In
+      #           values:
+      #           - show-hostname-details
+      #       topologyKey: kubernetes.io/hostname
+      # Pod anti affinity config END
+      containers:
+        - image: gfalk85/show-myip-myhostname-myzone
+          name: show-hostname-details-app
+          # Readiness probe config START
+          # readinessProbe:
+          #   failureThreshold: 1
+          #   httpGet:
+          #     path: /healthz
+          #     port: 8080
+          #     scheme: HTTP
+          #   initialDelaySeconds: 1
+          #   periodSeconds: 1
+          #   successThreshold: 1
+          #   timeoutSeconds: 1
+# [END container_helloapp_redis]
+# [END gke_manifests_app_deployment_deployment_hello_web]
