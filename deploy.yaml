@@ -1,45 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: show-host-details-deployment
   labels:
-    app: show-hostname-details
-  name: show-hostname-details
-  namespace: default
+    app: show-host-details
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: show-hostname-details
+      app: show-host-details
   template:
     metadata:
       labels:
-        app: show-hostname-details
+        app: show-host-details
     spec:
-      # Pod anti affinity config START
-      # affinity:
-      #   podAntiAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #     - labelSelector:
-      #         matchExpressions:
-      #         - key: app
-      #           operator: In
-      #           values:
-      #           - show-hostname-details
-      #       topologyKey: kubernetes.io/hostname
-      # Pod anti affinity config END
       containers:
-        - image: gfalk85/show-myip-myhostname-myzone
-          name: show-hostname-details-app
-          # Readiness probe config START
-          # readinessProbe:
-          #   failureThreshold: 1
-          #   httpGet:
-          #     path: /healthz
-          #     port: 8080
-          #     scheme: HTTP
-          #   initialDelaySeconds: 1
-          #   periodSeconds: 1
-          #   successThreshold: 1
-          #   timeoutSeconds: 1
-# [END container_helloapp_redis]
-# [END gke_manifests_app_deployment_deployment_hello_web]
+        - name: show-host-details
+          image: us-central1-docker.pkg.dev/georgef-sandbox/show-host-details-cicd-k8s/show-host-details
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: show-host-details-service
+spec:
+  type: ClusterIP
+  selector:
+    app: show-host-details
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
