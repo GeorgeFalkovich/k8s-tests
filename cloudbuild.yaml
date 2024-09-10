@@ -21,3 +21,5 @@ steps:
 timeout: 660s
 options:
   logging: CLOUD_LOGGING_ONLY
+  pool:
+    name: "projects/georgef-sandbox/locations/us-central1/workerPools/private-pool"
