@@ -17,7 +17,7 @@ steps:
       - run
       - --filename=deploy.yaml
       - --location=us-central1
-      - --cluster=cluster-test-private-regional
+      - --cluster=cluster-test-public-regional
 timeout: 660s
 options:
   logging: CLOUD_LOGGING_ONLY
