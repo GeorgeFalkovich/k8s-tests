@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: show-host-details-deployment-v2
   labels:
-    app: show-host-details-2
+    app: show-host-details-v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: show-host-details-2
+      app: show-host-details-v2
   template:
     metadata:
       labels:
-        app: show-host-details-2
+        app: show-host-details-v2
     spec:
       containers:
         - name: show-host-details
