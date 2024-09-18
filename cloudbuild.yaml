@@ -5,13 +5,16 @@ steps:
       [
         "build",
         "-t",
-        "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}v2",
+        "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}/v2",
         ".",
       ]
     # Push container image
   - name: "gcr.io/cloud-builders/docker"
     args:
-      ["push", "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}"]
+      [
+        "push",
+        "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}/v2",
+      ]
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
