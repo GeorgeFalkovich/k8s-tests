@@ -1,0 +1,5 @@
+
+openssl genrsa -out hello-app-ingress.key 2048
+openssl req -new -key hello-app-ingress.key -out hello-app-ingress.csr -subj "/CN=*.helloapp.com"
+openssl x509 -req -days 7300 -in hello-app-ingress.csr -signkey hello-app-ingress.key -out hello-app-ingress.crt
+kubectl create secret tls hello-app-secret  --cert hello-app-ingress.crt --key hello-app-ingress.key
