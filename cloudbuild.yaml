@@ -5,7 +5,7 @@ steps:
       [
         "build",
         "-t",
-        "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}",
+        "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}v2",
         ".",
       ]
     # Push container image
