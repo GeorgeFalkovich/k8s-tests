@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: show-host-details-deployment-v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: show-host-details-deployment-v2
+  template:
+    metadata:
+      labels:
+        app: show-host-details-deployment-v2
+    spec:
+      containers:
+        - name: show-host-details-container
+          image: us-central1-docker.pkg.dev/georgef-sandbox/show-host-details/show-host-details/v2
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: show-host-details-service-v2
+spec:
+  type: ClusterIP
+  selector:
+    app: show-host-details-deployment-v2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -8,5 +8,5 @@ echo "<h2>Hostname</h2>";
 echo "Server Hostname: " . php_uname("n");
 echo "<h2>Server Location</h2>";
 echo "Region and Zone: " . "region-here";
-echo "Version 2.0";
+echo "Version 1.1";
 ?>

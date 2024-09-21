@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-static-ip
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "hello-app-static-ip"
+spec:
+  defaultBackend:
+    service:
+      name: hello-app-svc-1
+      port:
+        number: 80
+  rules:
+    - http:
+        paths:
+          - path: /v1
+            pathType: Exact
+            backend:
+              service:
+                name: hello-app-svc-1
+                port:
+                  number: 80
+          # - path: /v2
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: hello-app-svc-2
+          #       port:
+          #         number: 80
