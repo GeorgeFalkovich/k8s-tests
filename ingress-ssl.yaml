@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-ssl
+  name: ingress-http
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "ingress-static-ip"
     # kubernetes.io/ingress.allow-http: "false"
@@ -10,7 +10,7 @@ spec:
   #   - secretName: hello-app-secret
   defaultBackend:
     service:
-      name: show-host-details-service
+      name: show-host-details-service-v1
       port:
         number: 80
   rules:
@@ -20,6 +20,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: show-host-details-service
+                name: show-host-details-service-v1
+                port:
+                  number: 80
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: show-host-details-service-v2
                 port:
                   number: 80
