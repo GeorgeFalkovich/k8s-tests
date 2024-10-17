@@ -1,13 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-http
+  name: gke-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "ingress-static-ip"
-    # kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: "gke-ingress-ip"
+    kubernetes.io/ingress.allow-http: "true"
+    cert-manager.io/issuer: letsencrypt-staging
 spec:
-  # tls:
-  #   - secretName: hello-app-secret
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - gke.george-falkovich.com
   defaultBackend:
     service:
       name: show-host-details-service-v1

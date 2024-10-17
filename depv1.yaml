@@ -17,6 +17,7 @@ spec:
           image: us-central1-docker.pkg.dev/georgef-sandbox/show-host-details/show-host-details/v1.1
           ports:
             - containerPort: 80
+          imagePullPolicy: "Always"
 
 ---
 apiVersion: v1

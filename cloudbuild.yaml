@@ -15,12 +15,13 @@ steps:
         "push",
         "${_LOCATION}-docker.pkg.dev/$_PROJECT_ID/${_AR_REPO}/${_IMAGE}/v2.2",
       ]
-  # - name: "gcr.io/cloud-builders/gke-deploy"
-  #   args:
-  #     - run
-  #     - --filename=deploy.yaml
-  #     - --location=us-central1
-  #     - --cluster=cluster-test-public-regional
+  # Deploy to cluster
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=deploy.yaml
+      - --location=us-central1
+      - --cluster=cluster-test-public-regional
 timeout: 660s
 options:
   logging: CLOUD_LOGGING_ONLY
