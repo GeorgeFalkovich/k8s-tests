@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Create hello.txt file with "hello jenkins" text content
-                    writeFile file: 'hello.txt', text: 'hello jenkins 2'
+                    writeFile file: 'hello.txt', text: 'hello jenkins2'
                 }
                 
                 // Display the contents of the created file
